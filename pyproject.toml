@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "hebrew_python"
+version = "0.1.0"
+description = "write python in hebrew"
+authors = ["matan h <matan.honig2@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+ideas = "^0.0.22"
+friendly = {git = "https://github.com/matan-h/friendly"} # my fork of friendly. I hope sometime I will marge this fork to main friendly
+
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[tool.poetry.scripts]
+hepy = 'hebrew_python.__main__:main'
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

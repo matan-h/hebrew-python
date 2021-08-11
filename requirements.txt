@@ -1,0 +1,5 @@
+ideas~=0.0.22
+ddebug~=0.4.2
+PySimpleGUI~=4.45.0
+friendly~=0.3.142
+rich~=10.6.0
