@@ -56,14 +56,18 @@ create_hook(run_module=True, console=True) # *with* starting repl
 `hebrew-python` support [jupyter](https://jupyter.org) and [ipython](https://ipython.org/) intercative console by ipython extension. to use:
 
 install jupyter-notebook by : `pip install notebook`  
-start jupyter-notebook by : `jupyter notebook`
+start jupyter-notebook by : `jupyter notebook`.
+then create new python3 by the new button.
 
-on the first cell enter the text `%load_ext hebrew_python`
+on the first cell enter the text `%load_ext hebrew_python` and pross contoll+enter.
+
 and then you can write hebrew-python in all notebook
 
 ## Dependencies
 hebrew-python depends on the python libraries:
-* [friendly](https://github.com/aroberge/friendly) - for more friendly traceback (friendly doesn't have translation to Hebrew yet, so currently it's using [my fork](https://github.com/matan-h/friendly) with my own translation to Hebrew. Will merge soon).
+<!--* [friendly](https://github.com/aroberge/friendly) - for more friendly traceback (friendly doesn't have translation to Hebrew yet, so currently it's using [my fork](https://github.com/matan-h/friendly) with my own translation to Hebrew. Will merge soon).-->
+
+[friendly](https://github.com/aroberge/friendly) - for more friendly english traceback
 
 * [ideas](https://github.com/aroberge/ideas) - most of this library is built on this project. It support easy creation of import hooks and it has a [simple example](https://github.com/aroberge/ideas/blob/master/ideas/examples/french.py) for replacing keywords to French keywords
 

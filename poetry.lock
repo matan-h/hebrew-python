@@ -71,25 +71,42 @@ python-versions = "*"
 
 [[package]]
 name = "friendly"
-version = "0.3.142"
+version = "0.4.14"
 description = "Friendlier tracebacks in any language."
 category = "main"
 optional = false
 python-versions = ">=3.6"
-develop = false
+
+[package.dependencies]
+friendly-styles = "*"
+friendly-traceback = ">=0.4.23"
+pygments = ">=2.6"
+rich = ">=10.5.0"
+
+[[package]]
+name = "friendly-styles"
+version = "0.1"
+description = "Pygments styles designed for friendly/friendly-traceback"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+pygments = ">=2"
+
+[[package]]
+name = "friendly-traceback"
+version = "0.4.36"
+description = "Friendlier tracebacks in any language."
+category = "main"
+optional = false
+python-versions = ">=3.6"
 
 [package.dependencies]
 asttokens = ">=2.0.4"
-executing = ">=0.5.3"
+executing = ">=0.7.0"
 pure-eval = ">=0.2.1"
-pygments = ">=2.6"
-rich = ">=10.3.0"
-
-[package.source]
-type = "git"
-url = "https://github.com/matan-h/friendly"
-reference = "master"
-resolved_reference = "3ab0fc6541c837271e8865e247750007acdd18fb"
+stack-data = ">=0.1.0"
 
 [[package]]
 name = "ideas"
@@ -237,6 +254,22 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
 
 [[package]]
+name = "stack-data"
+version = "0.1.0"
+description = "Extract data from python stack frames and tracebacks for informative displays"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+asttokens = "*"
+executing = "*"
+pure-eval = "*"
+
+[package.extras]
+tests = ["pytest", "typeguard", "pygments", "pep517", "littleutils"]
+
+[[package]]
 name = "token-utils"
 version = "0.1.8"
 description = "Small utility to work with Python tokens"
@@ -275,7 +308,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "7623a6f49409d27b8b4b67546a46463a903cf9bb93698b6a857407f5cb878024"
+content-hash = "26cee07645635e7b223212c7d85abbbd58b601db2c9963781a2ad0746808d541"
 
 [metadata.files]
 asttokens = [
@@ -306,7 +339,18 @@ executing = [
     {file = "executing-0.8.0-py2.py3-none-any.whl", hash = "sha256:7ef8637519b0c01b69c4a1785a0d13dcc2cf9f0d078804268887edad2b4f26d1"},
     {file = "executing-0.8.0.tar.gz", hash = "sha256:77ed91874d321338865ea2bf7337636a5de8e9a7f8323527d29c4fad2a1b48f7"},
 ]
-friendly = []
+friendly = [
+    {file = "friendly-0.4.14-py3-none-any.whl", hash = "sha256:47824fc1dd952a1623b0e1b8d1373be9e83efbf562598da4a966c81e11d61585"},
+    {file = "friendly-0.4.14.tar.gz", hash = "sha256:43acabd8e49700a872ea52232072b4e6a45f78ed3c7e4afcf8e4df0167d2279f"},
+]
+friendly-styles = [
+    {file = "friendly_styles-0.1-py3-none-any.whl", hash = "sha256:753fcb7a0157d58659b45ff49f1ab1bbb7e666a630f6b6da982931f128a86b93"},
+    {file = "friendly_styles-0.1.tar.gz", hash = "sha256:4babd7780f69863766773f1f7f9f0c4e2f5ba0ce124407255ba15d0dd6858c6b"},
+]
+friendly-traceback = [
+    {file = "friendly_traceback-0.4.36-py3-none-any.whl", hash = "sha256:be2c0846d699248b1ec32695c284d44ad0ec477c4de0a7df2e6aedf07c512e3a"},
+    {file = "friendly_traceback-0.4.36.tar.gz", hash = "sha256:ff35d54d83cc7a075cfbd92f6995307717cec1e1dc89f84dd658b9f6782099ae"},
+]
 ideas = [
     {file = "ideas-0.0.22-py3-none-any.whl", hash = "sha256:8675b08dbaffa2f339956109ea942ca96577cf26897d1bf867bcb72a451aa366"},
     {file = "ideas-0.0.22.tar.gz", hash = "sha256:27db196d1f4cf4bea1e88ef502f88b96ca2d0e6bdddaff6656c0bc3f771e9f80"},
@@ -354,6 +398,9 @@ rich = [
 six = [
     {file = "six-1.16.0-py2.py3-none-any.whl", hash = "sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"},
     {file = "six-1.16.0.tar.gz", hash = "sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926"},
+]
+stack-data = [
+    {file = "stack_data-0.1.0-py3-none-any.whl", hash = "sha256:114f3bf1cb2e6559408ea6ff850b664c603d915354760a0eac27a7e59fb9781c"},
 ]
 token-utils = [
     {file = "token-utils-0.1.8.tar.gz", hash = "sha256:7f4e2ff973822ce1e1829ba70e17d00b315a570c5be625b01a3f361933c2f86a"},

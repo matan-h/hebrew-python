@@ -1,13 +1,17 @@
 [tool.poetry]
 name = "hebrew_python"
-version = "0.1.0"
+version = "0.1.2"
 description = "write python in Hebrew"
 authors = ["matan h <matan.honig2@gmail.com>"]
+license = "BSD-4-Clause"
+readme = "README.md"
+homepage = "https://github.com/matan-h/hebrew-python"
 
 [tool.poetry.dependencies]
 python = "^3.6"
 ideas = "^0.0.22"
-friendly = {git = "https://github.com/matan-h/friendly"} # my fork of friendly. I hope sometime I will marge this fork to main friendly
+# friendly = {git = "https://github.com/matan-h/friendly"} #I Can't have direct dependency of my fork of friendly. I hope It will marge soon to main friendly
+friendly = "^0.4.14"
 
 
 [tool.poetry.dev-dependencies]
@@ -19,3 +23,6 @@ hepy = 'hebrew_python.__main__:main'
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.urls]
+issues = "https://github.com/matan-h/hebrew-python/issues"
