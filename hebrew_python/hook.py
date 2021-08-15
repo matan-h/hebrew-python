@@ -5,18 +5,28 @@ import os
 import sys
 import importlib.util
 import importlib
-
+from friendly.console_helpers import set_formatter
 from ideas import import_hook
 from ideas.examples import french
 
 try:
     from ddebug import dd
 except ImportError as e:
-    dd = lambda: e
+    exc = e
+
+
+    class DD:
+        def call(self, *args, **kwargs):
+            raise exc
+
+        __add__ = __enter__ = __exit__ = __call__ = __and__ = __getattr__ = __getitem__ = __setitem__ = __setattr__ = call
+
+
+    dd = DD()
 
 from . import error_hook
 
-sys.excepthook = error_hook.excepthook
+useful_globals = {"dd": dd,'set_formatter': set_formatter}
 
 
 def set_lang(l: str):
@@ -69,10 +79,11 @@ is_setup = False
 hebrew_builtins = {}
 
 
-def setup():
+def setup(with_excepthook=True):
     """
-    load hebrew_keywords.json and hebrew_builtins.json to fr_to_py dict (keywords) and hebrew_builtins (builtins) dict
+    set excepthook,load hebrew_keywords.json and hebrew_builtins.json to fr_to_py dict (keywords) and hebrew_builtins (builtins) dict
     """
+    sys.excepthook = error_hook.excepthook
     cdir = os.path.dirname(__file__)
     with open(os.path.join(cdir, "hebrew_keywords.json")) as io:
         french.fr_to_py = json.load(io)
@@ -98,7 +109,7 @@ def exec_code(code, filename, globals_: dict, module, callback_params):  # noqa
         module: module of the code
         callback_params: callback_params with show_original and show_transformed. I don't need them for this function
     """
-    globals_.update({"__hook__": filename, "dd": dd})
+    globals_.update(useful_globals)
     all_builtins = module.__dict__
     all_builtins.update(hebrew_builtins)
 

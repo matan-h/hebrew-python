@@ -1,11 +1,5 @@
-import functools
-
 import PySimpleGUI as sg
 import PySimpleGUI.PySimpleGUI as basic
-
-# from functools import partial
-
-# from string import digits
 
 basic._refresh_debugger = lambda *args, **kwargs: False  # disable PySimpleGUI debugger
 
@@ -16,6 +10,7 @@ def wraps(elem):
         def __init__(self, *args, מפתח=None, **kwargs):
             super(element, self).__init__(*args, key=מפתח, **kwargs)
             self.עדכן = self.update
+
     return element
 
 

@@ -3,6 +3,7 @@ import sys
 import unittest
 
 import hebrew_python.hook as hepy
+import hebrew_python.ipython as ipython
 from io import StringIO
 from contextlib import contextmanager
 
@@ -35,9 +36,9 @@ class TestHebrewPython(unittest.TestCase):
 
     def test_builtins(self):
         self.assertIn("הראה", hepy.hebrew_builtins)
-        with Output() as (std,_):
+        with Output() as (std, _):
             hepy.exec_code("הראה('OK')", '<test>', {}, builtins, {})
-            self.assertEqual(std.getvalue(),"OK\n")
+            self.assertEqual(std.getvalue(), "OK\n")
 
     def test_errors(self):
         try:
@@ -67,6 +68,7 @@ class TestHebrewPython(unittest.TestCase):
         hepy.create_hook(False, console=False)
         from . import import_file
         self.assertTrue(import_file.בודק())
+
 
 
 if __name__ == '__main__':
