@@ -1,13 +1,12 @@
-from types import FrameType
-import friendly.core
+import friendly_traceback.core
 import rich.panel
 import rich.traceback
 import rich.markdown
 import sys
 import inspect
 
-friendly.debug_helper.DEBUG = True
-old_log = friendly.debug_helper.log_error
+friendly_traceback.debug_helper.DEBUG = True
+old_log = friendly_traceback.debug_helper.log_error
 
 
 def getinnerframes(tb, context=1):
@@ -47,21 +46,22 @@ def new_log(exc=None):
     raise se
 
 
-friendly.debug_helper.log_error = new_log
-lang = "he"
+friendly_traceback.debug_helper.log_error = new_log
+# lang = "he"
+lang = "en"
 jupyter = False
 use_rich = False
 
 
-def excepthook(exc_type, exc_value, tb,show_traceback = True):
-    friendly.set_lang(lang)
+def excepthook(exc_type, exc_value, tb, show_traceback=True):
+    friendly_traceback.set_lang(lang)
     if jupyter:
         import IPython.display
         import IPython.core.ultratb
     else:
         IPython = None
     # load friendly
-    fr = friendly.core.FriendlyTraceback(exc_type, exc_value, tb)
+    fr = friendly_traceback.core.FriendlyTraceback(exc_type, exc_value, tb)
     fr.compile_info()
     # print traceback
     if IPython:
@@ -85,7 +85,7 @@ def excepthook(exc_type, exc_value, tb,show_traceback = True):
 
     # build Panel (or display Markdown for ipython)
     string = f'{generic}\n{suggest}\n{cause}'
-    if IPython and use_rich :
+    if IPython and use_rich:
         IPython.display.display(IPython.display.Markdown(string))
 
     else:
@@ -98,31 +98,66 @@ def excepthook(exc_type, exc_value, tb,show_traceback = True):
 
 
 #####
-old_get_partial_source = friendly.core.get_partial_source
+
+# hook friendly_traceback partial_source:
+from friendly_traceback.frame_info import FrameInfo, current_lang, cache, debug_helper, FakeLineObject, os
+
+old_get_partial_source = FrameInfo._partial_source
 en_sources = {}
 
 
-def get_partial_source(filename, linenumber, lines, index, text_range=None):
-    if index is not None:
-        return old_get_partial_source(filename, linenumber, lines, index, text_range)
-    else:  # index is none
-        if filename == '<frozen importlib._bootstrap>':
-            frame: inspect.FrameInfo = inspect.currentframe().f_back.f_locals.get("record", None)
-            if frame:
-                frame: FrameType = frame.frame
-                if frame.f_locals.get("name", None) in en_sources:
-                    source = en_sources[frame.f_locals["name"]]
-                    return {
-                        "source": source,
-                        "line": ''
-                    }
-    return {
-        "source": '\n',
-        "line": ''
-    }
-    # print(frame.f_globals)
-    # print(frame.f_locals["name"])
-    # return old_get_partial_source(filename, linenumber, lines, index, text_range)
+def _partial_source(self, with_node_range: bool):
+    """Copy of friendly_traceback.frame_info.FrameInfo._partial_source,but with <frozen importlib._bootstrap> as stdin.
+    Gets the part of the source where an exception occurred,
+    formatted in a pre-determined way, as well as the content
+    of the specific line where the exception occurred.
+    """
+    _ = current_lang.translate
+
+    file_not_found = _("Problem: source of `{filename}` is not available\n").format(
+        filename=self.filename
+    )
+    source = line = ""
+
+    if not self.lines and self.filename:
+        # protecting against https://github.com/alexmojaki/stack_data/issues/13
+        try:
+            lineno = self.lineno
+            s_lines = cache.get_source_lines(self.filename)
+            self.lines = []  # noqa
+            with_node_range = False
+            linenumber = lineno - 2
+            for line in s_lines[linenumber: lineno + 1]:
+                self.lines.append(FakeLineObject(line, linenumber, lineno))
+                linenumber += 1
+        except Exception as e:  # noqa
+            debug_helper.log_error(e)
+
+    if self.lines:
+        source, line = self._highlighted_source(with_node_range)
+    elif self.filename and os.path.abspath(self.filename):
+        if self.filename in ["<stdin>", "<string>", '<frozen importlib._bootstrap>']:
+            pass
+            # Using a normal Python REPL - source unavailable.
+            # An appropriate error message will have been given via
+            # cannot_analyze_stdin
+        else:
+            source = file_not_found
+            debug_helper.log("Problem in get_partial_source().")
+            debug_helper.log(file_not_found)
+    elif not self.filename:  # pragma: no cover
+        source = file_not_found
+        debug_helper.log("Problem in get_partial_source().")
+        debug_helper.log(file_not_found)
+    else:  # pragma: no cover
+        debug_helper.log("Problem in get_partial_source().")
+        debug_helper.log("Should not have reached this option")
+        debug_helper.log_error()
+
+    if not source.endswith("\n"):
+        source += "\n"
+
+    return {"source": source, "line": line}
 
 
-friendly.core.get_partial_source = get_partial_source
+FrameInfo._partial_source = _partial_source

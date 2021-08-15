@@ -5,7 +5,7 @@ import os
 import sys
 import importlib.util
 import importlib
-from friendly.console_helpers import set_formatter
+from friendly_traceback.console_helpers import set_formatter
 from ideas import import_hook
 from ideas.examples import french
 

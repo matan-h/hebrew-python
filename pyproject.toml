@@ -12,6 +12,7 @@ python = "^3.6"
 ideas = "^0.0.22"
 # friendly = {git = "https://github.com/matan-h/friendly"} #I Can't have direct dependency of my fork of friendly. I hope It will marge soon to main friendly
 friendly = "^0.4.14"
+friendly-traceback = "^0.4.36"
 
 
 [tool.poetry.dev-dependencies]
