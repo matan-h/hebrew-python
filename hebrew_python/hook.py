@@ -26,7 +26,7 @@ except ImportError as e:
 
 from . import error_hook
 
-useful_globals = {"dd": dd,'set_formatter': set_formatter}
+useful_globals = {"dd": dd, 'set_formatter': set_formatter}
 
 
 def set_lang(l: str):
@@ -62,14 +62,6 @@ def transform_source(source: str, module=None, callback_params=None, **_kwargs):
     if callback_params is not None:
         if callback_params["show_transformed"]:
             french.print_info("Transformed", source)
-
-    # with open("t.py", "w") as io:
-    #    io.write(source)
-    if not module:
-        name = '<stdin>'
-    else:
-        name = module.__name__
-    error_hook.en_sources.update({name: source})
 
     return source
 

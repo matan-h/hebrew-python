@@ -3,7 +3,6 @@ import sys
 import unittest
 
 import hebrew_python.hook as hepy
-import hebrew_python.ipython as ipython
 from io import StringIO
 from contextlib import contextmanager
 
@@ -52,7 +51,7 @@ class TestHebrewPython(unittest.TestCase):
                 # stderr
                 value = stderr.getvalue()
                 self.assertIn("Traceback", value)
-                self.assertIn("Traceback", value)
+                # self.assertIn("Traceback", value)
                 self.assertIn("ZeroDivisionError", value)
 
     def test_basic_file(self):

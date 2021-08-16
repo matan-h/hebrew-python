@@ -3,12 +3,21 @@ import PySimpleGUI.PySimpleGUI as basic
 
 basic._refresh_debugger = lambda *args, **kwargs: False  # disable PySimpleGUI debugger
 
+hebrew_kwargs = {
+    "מפתח": "key"
+}
+
 
 #
 def wraps(elem):
     class element(elem):
-        def __init__(self, *args, מפתח=None, **kwargs):
-            super(element, self).__init__(*args, key=מפתח, **kwargs)
+
+        def __init__(self, *args, **kwargs):
+            for k, v in hebrew_kwargs.items():
+                if kwargs.get(k, None):  # there is one of hebrew_kwargs
+                    kwargs[v] = kwargs[k]
+                    del kwargs[k]
+            super(element, self).__init__(*args, **kwargs)
             self.עדכן = self.update
 
     return element
@@ -47,3 +56,18 @@ def create_look_and_feel():
 
 
 sg.LOOK_AND_FEEL_TABLE.update(create_look_and_feel())
+
+
+def main():
+    טקסט("t", מפתח="key"),
+    סיגנון("זהב")
+    t = [
+        [טקסט("t", מפתח="key")],
+
+    ]
+    window = חלון("", t)
+    window.read()
+
+
+if __name__ == '__main__':
+    main()
