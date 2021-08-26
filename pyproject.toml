@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "hebrew_python"
-version = "0.1.3"
+version = "0.1.5"
 description = "write python in Hebrew"
 authors = ["matan h <matan.honig2@gmail.com>"]
 license = "BSD-4-Clause"

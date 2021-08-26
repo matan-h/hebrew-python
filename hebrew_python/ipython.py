@@ -16,7 +16,6 @@ class HebrewIPython:
             shell (InteractiveShell): current IPython shell
         """
         from IPython import InteractiveShell
-        from friendly.ipython import set_formatter
         # set_formatter('jupyter')
         hook.error_hook.jupyter = True
 

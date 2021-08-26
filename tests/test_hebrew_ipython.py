@@ -1,9 +1,7 @@
-import atexit
-import contextlib
 import unittest
 
 from IPython.testing import globalipapp
-from IPython.utils.io import capture_output
+# from IPython.utils.io import capture_output
 
 extension_name = "hebrew_python"
 
@@ -23,7 +21,7 @@ def close_ipython():
     ip.run_line_magic(magic_name='reset', line='-f')
 
 
-class TestHebrewPython(unittest.TestCase):
+class TestHebrewIPython(unittest.TestCase):
     def test_keywords(self):
         # cell = "# HEPY:SHOW\n"
         cell = 'out=(אמת אם אמת אחרת שקר)'
@@ -37,7 +35,7 @@ class TestHebrewPython(unittest.TestCase):
 
     def test_basic_file(self):
         cell = """
-יבא basic_file
+מתוך tests יבא basic_file
 
 מספר = basic_file.main()
 מינימום = basic_file.מינימום
@@ -48,12 +46,11 @@ class TestHebrewPython(unittest.TestCase):
 
     def test_import_file(self):
         cell = """
-        יבא import_file
+        מתוך tests יבא import_file
         tester = import_file.בודק
         """
         ip.run_cell(cell)
         ip.user_global_ns["tester"]()
-
 
 
 if __name__ == '__main__':

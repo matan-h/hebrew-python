@@ -6,6 +6,16 @@ import hebrew_python.hook as hepy
 from io import StringIO
 from contextlib import contextmanager
 
+# for debug the test:
+true_stdout = sys.stdout
+true_stderr = sys.stderr
+
+DEBUG = True
+if DEBUG:
+    from ddebug import dd
+
+    dd.add_output_folder(with_errors=False)
+
 
 @contextmanager
 def Output():
@@ -44,12 +54,19 @@ class TestHebrewPython(unittest.TestCase):
             1 / 0
         except ZeroDivisionError:
             with Output() as (stdout, stderr):
-                hepy.error_hook.excepthook(*sys.exc_info())
-                value = stdout.getvalue()
+                hepy.error_hook.excepthook = dd(hepy.error_hook.excepthook,call_type="@")
+
+                with hepy.error_hook.rich.get_console().capture() as capture:
+                    hepy.error_hook.excepthook(*sys.exc_info())
+
+                value = capture.get()
                 # stdout
                 self.assertIn("ידידותי", value)
-                # stderr
+
+                # rich
                 value = stderr.getvalue()
+                # breakpoint()
+
                 self.assertIn("Traceback", value)
                 # self.assertIn("Traceback", value)
                 self.assertIn("ZeroDivisionError", value)
@@ -67,7 +84,6 @@ class TestHebrewPython(unittest.TestCase):
         hepy.create_hook(False, console=False)
         from . import import_file
         self.assertTrue(import_file.בודק())
-
 
 
 if __name__ == '__main__':
