@@ -1,0 +1,15 @@
+"""
+The equal code section (roughly) in English:
+
+import hepy.random as random:
+print("hello world")
+print("Number between 1 and 100:"):
+print(random.random_number(1,100))
+"""
+
+יבא בנוי.אקראי בתור אקראי
+
+הראה("שלום עולם")
+הראה("מספר בין 1 ל 100")
+הראה(אקראי.מספר_אקראי(1,100))
+

@@ -48,13 +48,12 @@ class TestHebrewPython(unittest.TestCase):
         with Output() as (std, _):
             hepy.exec_code("הראה('OK')", '<test>', {}, builtins, {})
             self.assertEqual(std.getvalue(), "OK\n")
-
     def test_errors(self):
         try:
             1 / 0
         except ZeroDivisionError:
             with Output() as (stdout, stderr):
-                hepy.error_hook.excepthook = dd(hepy.error_hook.excepthook,call_type="@")
+                # hepy.error_hook.excepthook = dd(hepy.error_hook.excepthook,call_type="@")
 
                 with hepy.error_hook.rich.get_console().capture() as capture:
                     hepy.error_hook.excepthook(*sys.exc_info())
