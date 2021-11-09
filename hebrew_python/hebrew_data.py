@@ -10,11 +10,6 @@ hebrew_builtins = {
     "מינימום": "min",
     "מקסימום": "max",
     "הפוך": 'reversed',
-    "עגל": "round()",
-    "פרוסה": "slice()",
-    "מיין": "sorted()",
-    "סכום": "sum()",
-    "סוג": "type()",
 
     # std
     "הראה": "print",
@@ -86,6 +81,12 @@ hebrew_keywords = {
     "זרוק": "raise",
     "תפוס": "except",
     "לבסוף": "finally",
+    # list
+    "עגל": "round()",
+    "פרוסה": "slice()",
+    "מיין": "sorted()",
+    "סכום": "sum()",
+    "סוג": "type()",
 
     #
     'עם': "with",
