@@ -71,7 +71,7 @@ python-versions = "*"
 
 [[package]]
 name = "friendly"
-version = "0.4.23"
+version = "0.4.25"
 description = "Friendlier tracebacks in any language."
 category = "main"
 optional = false
@@ -96,7 +96,7 @@ pygments = ">=2"
 
 [[package]]
 name = "friendly-traceback"
-version = "0.4.59"
+version = "0.4.60"
 description = "Friendlier tracebacks in any language."
 category = "main"
 optional = false
@@ -106,7 +106,7 @@ python-versions = ">=3.6"
 asttokens = ">=2.0.4"
 executing = ">=0.7.0"
 pure-eval = ">=0.2.1"
-stack-data = ">=0.1.0"
+stack-data = ">=0.1.2"
 
 [[package]]
 name = "ideas"
@@ -121,7 +121,7 @@ token-utils = "*"
 
 [[package]]
 name = "importlib-metadata"
-version = "4.8.1"
+version = "4.8.2"
 description = "Read metadata from Python packages"
 category = "dev"
 optional = false
@@ -134,7 +134,7 @@ zipp = ">=0.5"
 [package.extras]
 docs = ["sphinx", "jaraco.packaging (>=8.2)", "rst.linker (>=1.9)"]
 perf = ["ipython"]
-testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-cov", "pytest-enabler (>=1.0.1)", "packaging", "pep517", "pyfakefs", "flufl.flake8", "pytest-perf (>=0.9.2)", "pytest-black (>=0.3.7)", "pytest-mypy", "importlib-resources (>=1.3)"]
+testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-cov", "pytest-enabler (>=1.0.1)", "packaging", "pep517", "pyfakefs", "flufl.flake8", "pytest-perf (>=0.9.2)", "pytest-black (>=0.3.7)", "pytest-mypy", "importlib-resources (>=1.3)"]
 
 [[package]]
 name = "more-itertools"
@@ -255,7 +255,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
 
 [[package]]
 name = "stack-data"
-version = "0.1.1"
+version = "0.1.2"
 description = "Extract data from python stack frames and tracebacks for informative displays"
 category = "main"
 optional = false
@@ -340,24 +340,24 @@ executing = [
     {file = "executing-0.8.2.tar.gz", hash = "sha256:c23bf42e9a7b9b212f185b1b2c3c91feb895963378887bb10e64a2e612ec0023"},
 ]
 friendly = [
-    {file = "friendly-0.4.23-py3-none-any.whl", hash = "sha256:ab14f88a1a198f979f81efd9ed1b84c2a6ae263ef02fe79788de8b5ca97efac9"},
-    {file = "friendly-0.4.23.tar.gz", hash = "sha256:c8a77aebb7fa1a9696bf3e1ba112150a3dc9750f571e9ce82a898f64f3d2856f"},
+    {file = "friendly-0.4.25-py3-none-any.whl", hash = "sha256:a098e849f3fced7769373333595f31143f4547200afbb571bd0ed379a4012d31"},
+    {file = "friendly-0.4.25.tar.gz", hash = "sha256:e70ac930e9ad5a95facee42acc38571e67422515e4911492d0dccfa2c2419b39"},
 ]
 friendly-styles = [
     {file = "friendly_styles-0.1-py3-none-any.whl", hash = "sha256:753fcb7a0157d58659b45ff49f1ab1bbb7e666a630f6b6da982931f128a86b93"},
     {file = "friendly_styles-0.1.tar.gz", hash = "sha256:4babd7780f69863766773f1f7f9f0c4e2f5ba0ce124407255ba15d0dd6858c6b"},
 ]
 friendly-traceback = [
-    {file = "friendly-traceback-0.4.59.tar.gz", hash = "sha256:a08117cc98e0d04515953ab1893200706860eaaa50922d75ec5ea032411f6b9c"},
-    {file = "friendly_traceback-0.4.59-py3-none-any.whl", hash = "sha256:c836a218a60243efe7e1829982cd75ab2215c9b8bd0915f1636d4d4483c35c7b"},
+    {file = "friendly-traceback-0.4.60.tar.gz", hash = "sha256:3ec2e8d5d59c8aab952a5c25126455c1e2e93d28aaab4f98e9947e3e385c7d6e"},
+    {file = "friendly_traceback-0.4.60-py3-none-any.whl", hash = "sha256:7a82fef6b34d41ac2a453cb587c11eec5fc54c5714fcb69e2b689f3cb867ce55"},
 ]
 ideas = [
     {file = "ideas-0.0.22-py3-none-any.whl", hash = "sha256:8675b08dbaffa2f339956109ea942ca96577cf26897d1bf867bcb72a451aa366"},
     {file = "ideas-0.0.22.tar.gz", hash = "sha256:27db196d1f4cf4bea1e88ef502f88b96ca2d0e6bdddaff6656c0bc3f771e9f80"},
 ]
 importlib-metadata = [
-    {file = "importlib_metadata-4.8.1-py3-none-any.whl", hash = "sha256:b618b6d2d5ffa2f16add5697cf57a46c76a56229b0ed1c438322e4e95645bd15"},
-    {file = "importlib_metadata-4.8.1.tar.gz", hash = "sha256:f284b3e11256ad1e5d03ab86bb2ccd6f5339688ff17a4d797a0fe7df326f23b1"},
+    {file = "importlib_metadata-4.8.2-py3-none-any.whl", hash = "sha256:53ccfd5c134223e497627b9815d5030edf77d2ed573922f7a0b8f8bb81a1c100"},
+    {file = "importlib_metadata-4.8.2.tar.gz", hash = "sha256:75bdec14c397f528724c1bfd9709d660b33a4d2e77387a3358f20b848bb5e5fb"},
 ]
 more-itertools = [
     {file = "more-itertools-8.10.0.tar.gz", hash = "sha256:1debcabeb1df793814859d64a81ad7cb10504c24349368ccf214c664c474f41f"},
@@ -400,7 +400,7 @@ six = [
     {file = "six-1.16.0.tar.gz", hash = "sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926"},
 ]
 stack-data = [
-    {file = "stack_data-0.1.1-py3-none-any.whl", hash = "sha256:83d712365a27f321fdc81f3df1f082e34496048d9675c78189b967329ec74519"},
+    {file = "stack_data-0.1.2-py3-none-any.whl", hash = "sha256:5331dbd6592f5942a69649f8e84aa5419663e02b6123349242fb8de127fad019"},
 ]
 token-utils = [
     {file = "token-utils-0.1.8.tar.gz", hash = "sha256:7f4e2ff973822ce1e1829ba70e17d00b315a570c5be625b01a3f361933c2f86a"},
