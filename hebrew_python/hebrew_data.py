@@ -10,6 +10,7 @@ hebrew_builtins = {
     "מינימום": "min",
     "מקסימום": "max",
     "הפוך": 'reversed',
+    "מניה":"enumerate",
 
     # std
     "הראה": "print",
@@ -81,6 +82,7 @@ hebrew_keywords = {
     "זרוק": "raise",
     "תפוס": "except",
     "לבסוף": "finally",
+    
     # list
     "עגל": "round()",
     "פרוסה": "slice()",
