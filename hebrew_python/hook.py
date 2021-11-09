@@ -9,6 +9,8 @@ from friendly_traceback.console_helpers import set_formatter
 from ideas import import_hook
 from ideas.examples import french
 
+from . import hebrew_data
+
 try:
     from ddebug import dd
 except ImportError as e:
@@ -77,10 +79,13 @@ def setup(with_excepthook=True):
     """
     sys.excepthook = error_hook.excepthook
     cdir = os.path.dirname(__file__)
-    with open(os.path.join(cdir, "hebrew_keywords.json")) as io:
+
+    """with open(os.path.join(cdir, "hebrew_keywords.json")) as io:
         french.fr_to_py = json.load(io)
     with open(os.path.join(cdir, "hebrew_builtins.json")) as io:
-        str_hebrew_builtins: dict = json.load(io)
+        str_hebrew_builtins: dict = json.load(io)"""
+    str_hebrew_builtins = hebrew_data.hebrew_builtins
+    french.fr_to_py = hebrew_data.hebrew_keywords
     for k, v in str_hebrew_builtins.items():
         k: str
         v: str
