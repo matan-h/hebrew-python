@@ -11,6 +11,7 @@ hebrew_builtins = {
     "מקסימום": "max",
     "הפוך": 'reversed',
     "מניה":"enumerate",
+    "מפה":"map",
 
     # std
     "הראה": "print",
@@ -60,6 +61,7 @@ hebrew_keywords = {
     "צף": "float",
     "כלום": "None",
     "בוליאני": "bool",
+    "מחרוזת":"str",
     "סט": "set()",
     'object': 'אובייקט',
 
