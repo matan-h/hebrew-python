@@ -5,7 +5,7 @@ import unittest
 import hebrew_python.hook as hepy
 from io import StringIO
 from contextlib import contextmanager
-
+import re
 # for debug the test:
 true_stdout = sys.stdout
 true_stderr = sys.stderr
@@ -33,6 +33,8 @@ def Output():
 
 
 class TestHebrewPython(unittest.TestCase):
+    ansi_escape = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
+
     def setUp(self):
         hepy.setup()
         self.assertIn("הראה", hepy.hebrew_builtins)
@@ -48,6 +50,7 @@ class TestHebrewPython(unittest.TestCase):
         with Output() as (std, _):
             hepy.exec_code("הראה('OK')", '<test>', {}, builtins, {})
             self.assertEqual(std.getvalue(), "OK\n")
+
     def test_errors(self):
         try:
             1 / 0
@@ -61,14 +64,6 @@ class TestHebrewPython(unittest.TestCase):
                 value = capture.get()
                 # stdout
                 self.assertIn("ידידותי", value)
-
-                # rich
-                value = stderr.getvalue()
-                # breakpoint()
-
-                self.assertIn("Traceback", value)
-                # self.assertIn("Traceback", value)
-                self.assertIn("ZeroDivisionError", value)
 
     def test_basic_file(self):
         # sys.argv = [sys.argv[0], "basic_file.hepy", sys.argv[1:]]
