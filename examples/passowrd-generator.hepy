@@ -23,10 +23,9 @@
 	סיסמה_זמנית_רשימה = list(סיסמה_זמנית)
 	ערבב(סיסמה_זמנית_רשימה)
 
-# traverse the temporary password array and append the chars
-# to form the password
+
 סיסמה = ""
-for x in סיסמה_זמנית_רשימה:
+לכל x בתוך סיסמה_זמנית_רשימה:
 		סיסמה = סיסמה + x
 		
-print(סיסמה)
+הראה(סיסמה)
