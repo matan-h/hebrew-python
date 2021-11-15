@@ -10,12 +10,15 @@ import re
 true_stdout = sys.stdout
 true_stderr = sys.stderr
 
-DEBUG = True
+DEBUG = False
 if DEBUG:
     from ddebug import dd
 
     dd.add_output_folder(with_errors=False)
-
+try:
+    import friendly_traceback
+except ImportError:
+    friendly_traceback = None
 
 @contextmanager
 def Output():
@@ -63,7 +66,8 @@ class TestHebrewPython(unittest.TestCase):
 
                 value = capture.get()
                 # stdout
-                self.assertIn("ידידותי", value)
+                if friendly_traceback:
+                    self.assertIn("ידידותי", value)
 
     def test_basic_file(self):
         # sys.argv = [sys.argv[0], "basic_file.hepy", sys.argv[1:]]

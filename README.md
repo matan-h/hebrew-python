@@ -22,8 +22,12 @@ You can also import other `.hepy` and `.py` files from the main file:
 ## Installing
 To install with pip
 type in terminal:
+```shell
+pip install "hebrew-python[errors]"
 ```
-(sudo) pip install hebrew-python
+and for non-errors support (without friendly-traceback):
+```shell
+pip install hebrew-python
 ```
 This will create the commandline script:`hepy`
 

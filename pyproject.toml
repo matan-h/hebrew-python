@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "hebrew_python"
-version = "0.1.6"
+version = "0.1.7"
 description = "write python in Hebrew"
 authors = ["matan h <matan.honig2@gmail.com>"]
 license = "BSD-4-Clause"
@@ -8,12 +8,16 @@ readme = "README.md"
 homepage = "https://github.com/matan-h/hebrew-python"
 
 [tool.poetry.dependencies]
-python = "^3.6"
-ideas = "^0.0.22"
+python = "^3.6" # main
+ideas = "^0.0.22" # main
 # friendly = {git = "https://github.com/matan-h/friendly"} #I Can't have direct dependency of my fork of friendly. I hope It will marge soon to main friendly
-friendly = "^0.4.14"
-friendly-traceback = "^0.4.36"
 
+# optional
+#friendly = { version ="^0.4.14",optional = true }
+friendly-traceback = { version ="^0.4.36",optional = true}
+
+[tool.poetry.extras]
+    errors = ["friendly","friendly-traceback"]
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

@@ -5,7 +5,10 @@ import os
 import sys
 import importlib.util
 import importlib
-from friendly_traceback.console_helpers import set_formatter
+try:
+    from friendly_traceback.console_helpers import set_formatter
+except ImportError:
+    set_formatter = None
 from ideas import import_hook
 from ideas.examples import french
 

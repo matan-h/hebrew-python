@@ -1,4 +1,10 @@
-import friendly_traceback.core
+try:
+    import friendly_traceback.core as friendly_core
+    import friendly_traceback
+except ImportError:
+    friendly_core = None
+    friendly_traceback = None
+
 import rich.panel
 import rich.traceback
 import rich.markdown
@@ -9,8 +15,10 @@ lang = "en"
 jupyter = False
 use_rich = False
 
+excepthook_no_friendly = sys.excepthook
 
-def excepthook(exc_type, exc_value, tb, show_traceback=True):
+
+def excepthook_friendly(exc_type, exc_value, tb, show_traceback=True):
     friendly_traceback.set_lang(lang)
     if jupyter:
         import IPython.display
@@ -18,7 +26,7 @@ def excepthook(exc_type, exc_value, tb, show_traceback=True):
     else:
         IPython = None
     # load friendly
-    fr = friendly_traceback.core.FriendlyTraceback(exc_type, exc_value, tb)
+    fr = friendly_core.FriendlyTraceback(exc_type, exc_value, tb)
     fr.compile_info()
     # print traceback
     if IPython:
@@ -52,3 +60,9 @@ def excepthook(exc_type, exc_value, tb, show_traceback=True):
                                  padding=(0, 1))
 
         rich.get_console().print(trace)
+
+
+if friendly_traceback:
+    excepthook = excepthook_friendly
+else:
+    excepthook = excepthook_no_friendly
