@@ -13,7 +13,7 @@ ideas = "^0.0.22" # main
 # friendly = {git = "https://github.com/matan-h/friendly"} #I Can't have direct dependency of my fork of friendly. I hope It will marge soon to main friendly
 
 # optional
-#friendly = { version ="^0.4.14",optional = true }
+# friendly = { version ="^0.4.14",optional = true }
 friendly-traceback = { version ="^0.4.36",optional = true}
 
 [tool.poetry.extras]
